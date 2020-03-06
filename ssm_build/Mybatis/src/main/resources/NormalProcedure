@@ -1,0 +1,24 @@
+1、编写mybatis.xml核心配置文件，连接数据库
+
+2、编写mybatis工具类，根据核心配置信息，利用sqlSessionFactory创建sqlSession
+
+2、为dao层实现接口编写实现mapper.xml并注册到mybatis-config.xml文件中，相当于dao的实现类，其中涵盖所有dao接口中定义的方法对应的SQL语句
+
+
+
+Mybatis配置：
+configuration（配置）
+    properties（属性）   ——> 导入外部静态资源（database.properties）<properties resource="db.properties"/>
+    settings（设置）   ——> 日志、缓存、懒加载等
+    typeAliases（类型别名）  ——> 类别名，一般直接扫描一个package，使其下的类全部都自动生成别名<package name="com.demo.pojo"/>  @Alias("book")
+    typeHandlers（类型处理器）
+    objectFactory（对象工厂）
+    plugins（插件）
+    environments（环境配置） ——> 必须指定一个default环境，默认使用这个数据库连接
+        environment（环境变量）
+            transactionManager（事务管理器） ——> 注意在开启session后执行事务完毕后记得 session.commit() && session.close()
+            dataSource（数据源）  ——> 连接池dbcp  c3p0  druid hikira
+    databaseIdProvider（数据库厂商标识）
+    mappers（映射器）   ——>  每一个dao层接口的实现xml都必须在这里注册生效
+
+<!-- 注意元素节点的顺序！顺序不对会报错 -->

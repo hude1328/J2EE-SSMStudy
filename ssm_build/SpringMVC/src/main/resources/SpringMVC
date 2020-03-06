@@ -1,0 +1,6 @@
+1、在web.xml中注册一个DispatcherServlet，负责前端请求的路由、路由完成后将参数传到路由结果的handler/controller完成业务逻辑处理，然后得到
+controller处理的结果和返回的视图模板，将这些数据和视图传给jsp，将结合后的结果再返回给前端
+
+2、编写springmvc-servlet.xml配置文件，配置处理器映射器、处理器适配器、视图解析器、前端渲染模板目录
+    不要忘了注册handler的bean，这个bean的id就是处理器映射器对请求url进行映射/路由的依据
+    （或者也可以不用注册这个handler，采用注解开发，只用在controller和其方法下添加@Controller、@RequestMapping("/hello")即可）
